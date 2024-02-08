@@ -31,6 +31,7 @@ app.use(
   (req, res, next) => {
     console.log(" ");
     console.log("Method is " + req.method);
+    console.log("IP Address of the access point is " + req.ip);
     console.log("Body Data is " + req.body);
     console.log(" ");
     next();
