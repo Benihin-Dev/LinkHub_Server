@@ -1,18 +1,30 @@
-const userModel = require("./model&schema");
+const userModel = require("./GuestUsermodel&schema");
 const mongoose = require("mongoose");
 
 const addnewuser = async (req, res) => {
-  const { firstname, lastname, useremail, username, password, socialMedia } =
-    req.body;
+  const {
+    username,
+    facebook,
+    youtube,
+    instagram,
+    snapchat,
+    tiktok,
+    x,
+    pinterest,
+    tinder,
+  } = req.body;
 
   try {
     const user = await userModel.create({
-      firstname,
-      lastname,
-      useremail,
       username,
-      password,
-      socialMedia,
+      facebook,
+      youtube,
+      instagram,
+      snapchat,
+      tiktok,
+      x,
+      pinterest,
+      tinder,
     });
     res.status(200).json(user);
   } catch (e) {

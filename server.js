@@ -4,6 +4,8 @@ const cors = require("cors");
 const app = express();
 require("dotenv").config();
 const userDataRouter = require("./router");
+const guestUserDataRouter = require("./guestrouter");
+const userCommentsDataRouter = require("./commentsrouter");
 
 app.use(cors());
 app.use(express.json());
@@ -27,16 +29,48 @@ mongoose
   });
 
 app.use(
-  "/userData",
+  "/paidUserData",
   (req, res, next) => {
-    console.log(" ");
+    console.log("----------------");
     console.log("Method is " + req.method);
     console.log("IP Address of the access point is " + req.ip);
     console.log("Body Data is " + req.body);
-    console.log(" ");
+    console.log("----------------");
     next();
   },
   userDataRouter,
+  () => {
+    console.log("Hello");
+  }
+);
+
+app.use(
+  "/guestUserData",
+  (req, res, next) => {
+    console.log("----------------");
+    console.log("Method is " + req.method);
+    console.log("IP Address of the access point is " + req.ip);
+    console.log("Body Data is " + req.body);
+    console.log("----------------");
+    next();
+  },
+  guestUserDataRouter,
+  () => {
+    console.log("Hello");
+  }
+);
+
+app.use(
+  "/userCommentsData",
+  (req, res, next) => {
+    console.log("----------------");
+    console.log("Method is " + req.method);
+    console.log("IP Address of the access point is " + req.ip);
+    console.log("Body Data is " + req.body);
+    console.log("----------------");
+    next();
+  },
+  userCommentsDataRouter,
   () => {
     console.log("Hello");
   }
